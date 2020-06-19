@@ -17,10 +17,11 @@ class App extends React.Component {
                       {name: 'Maroon 5', artist: 'Moves Like Jagger', album: 'Hands All Over', id: 5},
                       {name: 'Maroon 5', artist: 'One More Night', album: 'One More Night', id: 6}],
       playlistName: 'My Playlist',
-      playlistTracks: [{name: 'The Scientist', artist: 'Coldplay', album: 'A Rush of Blood to the Head', id: 4},
-                      {name: 'Harder to Breathe', artist: 'Maroon 5', album: 'Songs About Jane', id: 5},
-                      {name: 'Pyramid Song', artist: 'Radiohead', album: 'Amnesiac', id: 6}]
-    }
+      playlistTracks: [{name: 'The Scientist', artist: 'Coldplay', album: 'A Rush of Blood to the Head', id: 7},
+                      {name: 'Harder to Breathe', artist: 'Maroon 5', album: 'Songs About Jane', id: 8},
+                      {name: 'Pyramid Song', artist: 'Radiohead', album: 'Amnesiac', id: 9}]
+    };
+    this.addTrack = this.addTrack.bind(this);
   }
 
   addTrack(track) {
@@ -40,7 +41,8 @@ class App extends React.Component {
         <div className="App">
           <SearchBar />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults}/>
+            <SearchResults searchResults={this.state.searchResults}
+                           onAdd={this.addTrack} />
             <Playlist playlistName={this.state.playlistName}
                       playlistTracks={this.state.playlistTracks}/>
           </div>
