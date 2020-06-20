@@ -5,6 +5,11 @@
 
 In this project, you will build a React web application called Music Timing. You will use your knowledge of React components, passing state, and requests with the [Spotify API](https://developer.spotify.com/documentation/web-api/) to build a website that allows users to search the Spotify library, create a custom playlist, then save it to their Spotify account.
 
+- [Implicit Grant Flow](https://developer.spotify.com/documentation/general/guides/authorization-guide/#implicit-grant-flow)
+
+- [Spotify application registration flow](https://developer.spotify.com/my-applications/#!/applications)
+
+
 ### Preview
 
 ![screencapture](./public/screencapture.jpg)
