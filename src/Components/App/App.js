@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
-import Playlist from '../Playlist/Playlist'
+import Playlist from '../Playlist/Playlist';
+import Spotify from '../../util/Spotify'
 
 class App extends React.Component {
 
@@ -10,16 +11,16 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      searchResults: [{name: 'Maroon 5', artist: 'Memories', album: 'Memories', id: 1},
-                      {name: 'Maroon 5', artist: 'Girls Like You', album: 'Red Pill Blues ', id: 2},
-                      {name: 'Maroon 5', artist: 'Sunday Morning', album: 'Songs About Jane', id: 3},
-                      {name: 'Maroon 5', artist: 'She Will Be Loved', album: 'Songs About Jane', id: 4},
-                      {name: 'Maroon 5', artist: 'Moves Like Jagger', album: 'Hands All Over', id: 5},
-                      {name: 'Maroon 5', artist: 'One More Night', album: 'One More Night', id: 6}],
+      searchResults: [{ name: 'Maroon 5', artist: 'Memories', album: 'Memories', id: 1 },
+      { name: 'Maroon 5', artist: 'Girls Like You', album: 'Red Pill Blues ', id: 2 },
+      { name: 'Maroon 5', artist: 'Sunday Morning', album: 'Songs About Jane', id: 3 },
+      { name: 'Maroon 5', artist: 'She Will Be Loved', album: 'Songs About Jane', id: 4 },
+      { name: 'Maroon 5', artist: 'Moves Like Jagger', album: 'Hands All Over', id: 5 },
+      { name: 'Maroon 5', artist: 'One More Night', album: 'One More Night', id: 6 }],
       playlistName: 'My Playlist',
-      playlistTracks: [{name: 'The Scientist', artist: 'Coldplay', album: 'A Rush of Blood to the Head', id: 7},
-                      {name: 'Harder to Breathe', artist: 'Maroon 5', album: 'Songs About Jane', id: 8},
-                      {name: 'Pyramid Song', artist: 'Radiohead', album: 'Amnesiac', id: 9}]
+      playlistTracks: [{ name: 'The Scientist', artist: 'Coldplay', album: 'A Rush of Blood to the Head', id: 7 },
+      { name: 'Harder to Breathe', artist: 'Maroon 5', album: 'Songs About Jane', id: 8 },
+      { name: 'Pyramid Song', artist: 'Radiohead', album: 'Amnesiac', id: 9 }]
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -30,7 +31,7 @@ class App extends React.Component {
 
   addTrack(track) {
     let tracks = this.state.playlistTracks;
-    if(tracks.find(savedTrack => savedTrack.id === track.id)) {
+    if (tracks.find(savedTrack => savedTrack.id === track.id)) {
       return;
     }
 
@@ -42,7 +43,7 @@ class App extends React.Component {
     let tracks = this.state.playlistTracks;
     tracks = tracks.filter(currentTrack => currentTrack.id !== track.id);
 
-    this.setState({playlistTracks: tracks})
+    this.setState({ playlistTracks: tracks })
   }
 
   updatePlaylistName(name) {
@@ -55,8 +56,10 @@ class App extends React.Component {
   }
 
   search(term) {
-    console.log(term);
-    
+    // console.log(term);
+    Spotify.search(term).then(searchResults => {
+      this.setState({ searchResults: searchResults })
+    })
   }
 
   render() {
@@ -67,12 +70,12 @@ class App extends React.Component {
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults}
-                           onAdd={this.addTrack} />
+              onAdd={this.addTrack} />
             <Playlist playlistName={this.state.playlistName}
-                      playlistTracks={this.state.playlistTracks}
-                      onRemove={this.removeTrack}
-                      onNameChange={this.updatePlaylistName}
-                      onSave={this.savePlaylist} />
+              playlistTracks={this.state.playlistTracks}
+              onRemove={this.removeTrack}
+              onNameChange={this.updatePlaylistName}
+              onSave={this.savePlaylist} />
           </div>
         </div>
       </div>
