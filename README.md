@@ -9,6 +9,9 @@ In this project, you will build a React web application called Music Timing. You
 
 - [Spotify application registration flow](https://developer.spotify.com/my-applications/#!/applications)
 
+- [implicit grant flow request format](https://developer.spotify.com/documentation/general/guides/authorization-guide/)
+
+- [Spotify playlist endpoints](https://developer.spotify.com/documentation/web-api/reference/playlists/)
 
 ### Preview
 
