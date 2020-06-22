@@ -1,5 +1,5 @@
 const clientId = 'b66c619aa9464b05aa83bd686510d626';
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'https://music-timing.netlify.app/';
 let accessToken;
 
 const Spotify = {
@@ -9,11 +9,11 @@ const Spotify = {
         }
 
         // Check for access token match
-        const accessTokenMacth = window.location.href.match(/access_token=([^&]*)/);
+        const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
         const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
 
-        if (accessTokenMacth && expiresInMatch) {
-            accessToken = accessTokenMacth[1];
+        if (accessTokenMatch && expiresInMatch) {
+            accessToken = accessTokenMatch[1];
             const expiresIn = Number(expiresInMatch[1]);
 
             //THis clears the parameters, allowing us to grab a new access token when it exprires
@@ -30,7 +30,7 @@ const Spotify = {
         const accessToken = Spotify.getAccessToken;
         return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
             headers: {
-                Autorizations: `Bearer ${accessToken}`
+                Authorization: `Bearer ${accessToken}`
             }
         }).then(response => {
             return response.json();
@@ -44,8 +44,8 @@ const Spotify = {
                 artist: track.artists[0].name,
                 album: track.album.name,
                 uri: track.uri
-            }))
-        })
+            }));
+        });
     },
 
     savePlaylist(name, trackUris) {
@@ -54,7 +54,7 @@ const Spotify = {
         }
 
         const accessToken = Spotify.getAccessToken();
-        const headers = { Autorizations: `Bearer ${accessToken}` };
+        const headers = { Authorization: `Bearer ${accessToken}` };
         let userId;
 
         return fetch('https://api.spotify.com/v1/me', { headers: headers }
