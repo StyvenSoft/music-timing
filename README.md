@@ -1,6 +1,11 @@
 
 # Music Timing
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/151b0238-3f23-44ee-943c-3d2d0b07b3b8/deploy-status)](https://app.netlify.com/sites/music-timing/deploys)
+[![GitHub issues](https://img.shields.io/github/issues/StyvenSoft/music-timing)](https://github.com/StyvenSoft/music-timing/issues)
+![GitHub repo size](https://img.shields.io/github/repo-size/StyvenSoft/music-timing)
+[![GitHub license](https://img.shields.io/github/license/StyvenSoft/music-timing)](https://github.com/StyvenSoft/music-timing/blob/master/LICENSE)
+
 **BUILDING FRONT-END APPLICATIONS WITH REACT**
 
 In this project, you will build a React web application called Music Timing. You will use your knowledge of React components, passing state, and requests with the [Spotify API](https://developer.spotify.com/documentation/web-api/) to build a website that allows users to search the Spotify library, create a custom playlist, then save it to their Spotify account.
